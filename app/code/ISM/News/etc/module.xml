@@ -7,5 +7,4 @@
             <module name="Magento_Catalog"/>
         </sequence>
     </module>
-
 </config>
