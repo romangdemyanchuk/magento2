@@ -5,9 +5,23 @@
         <referenceContainer name="content">
             <block class="Magento\Framework\View\Element\Template"
                     name="some.block.name"
-                    template="Magento_Theme::ism/some-name.phtml"
-                    before="catalog.product.related" after="product.info.detail"
+                    template="Magento_Catalog::ism/text-block.phtml"
+                    after="product.info.detail"
             />
         </referenceContainer>
+        <referenceBlock name="header.links">
+            <block class="Magento\Framework\View\Element\Html\Link" name="account-link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">My account</argument>
+                    <argument name="path" xsi:type="string">modernminds</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link" name="wishlist-link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">My wishlist</argument>
+                    <argument name="path" xsi:type="string"/>
+                </arguments>
+            </block>
+        </referenceBlock>
     </body>
 </page>

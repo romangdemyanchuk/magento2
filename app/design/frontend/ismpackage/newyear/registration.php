@@ -7,5 +7,5 @@
 use Magento\Framework\Component\ComponentRegistrar;
 
 ComponentRegistrar::register(
-    ComponentRegistrar::THEME, 'frontend/ModernMinds/modernminds', __DIR__
+    ComponentRegistrar::THEME, 'frontend/ismpackage/newyear', __DIR__
 );
