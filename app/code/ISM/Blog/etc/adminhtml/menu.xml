@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="ism_blog::core" title="Blog" module="ISM_Blog" sortOrder="90" resource="ISM_Blog::sample"/>
+        <add id="ism_blog::test" title="My blog" module="ISM_Blog"
+             sortOrder="10" parent="ism_blog::core" action="ism_blog/items/" resource="ISM_Blog::items"/>
+    </menu>
+</config>

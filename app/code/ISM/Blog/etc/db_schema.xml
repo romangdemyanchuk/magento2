@@ -1,0 +1,13 @@
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="ism_blog_table" resource="default" engine="innodb"
+           comment="ISM Posts Table">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" comment="Entity Id"/>
+        <column xsi:type="text" name="title"/>
+        <column xsi:type="text" name="content"/>
+        <column xsi:type="text" name="announce"/>
+        <column xsi:type="timestamp" name="published_date"/>
+        <column xsi:type="text" name="url_key"/>
+        <column xsi:type="boolean" name="is_published"/>
+    </table>
+</schema>

@@ -1,7 +1,0 @@
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Backend/etc/menu.xsd">
-    <menu>
-        <add id="ism_events::core" title="Events Create" module="Ism_Events" sortOrder="90" resource="Ism_Events::sample"/>
-        <add id="ism_events::test" title="Display All Events" module="Ism_Events" sortOrder="10"
-             parent="ism_events::core" action="ism_events/items/" resource="Ism_Events::items"/>
-    </menu>
-</config>
