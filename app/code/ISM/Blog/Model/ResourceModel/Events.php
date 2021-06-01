@@ -16,6 +16,6 @@ class Events extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
      */
     protected function _construct()
     {
-        $this->_init('ism_blog_table', 'entity_id');   //here "chirag_events_table" is table name and "entity_id" is the primary key of custom table
+        $this->_init('ism_blog_table', 'entity_id');
     }
 }

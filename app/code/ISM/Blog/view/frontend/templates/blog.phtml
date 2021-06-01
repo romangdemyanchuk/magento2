@@ -1,0 +1,96 @@
+<?php
+/**
+* Copyright © Magento, Inc. All rights reserved.
+* See COPYING.txt for license details.
+*/
+use Magento\Framework\App\Action\Action;
+
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @var $block \ISM\Blog\Block\Items
+ * @var \Magento\Framework\Escaper $escaper
+ * @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer
+ * @var $__call \Magento\Framework\Exception\LocalizedException
+ */
+?>
+
+<?php
+$_postsCollection = $block->getProductCollection();
+$_helper = $block->getData('outputHelper');
+?>
+<?php if (!$_postsCollection->count()): ?>
+    <div class="message info empty">
+        <div><?= $escaper->escapeHtml(__('We can\'t find products matching the selection.')) ?></div>
+    </div>
+<?php else: ?>
+    <?= $block->getToolbarHtml() ?>
+    <?= $block->getAdditionalHtml() ?>
+    <?php
+    if ($block->getMode() === 'grid') {
+        $viewMode = 'grid';
+        $imageDisplayArea = 'category_page_grid';
+        $showDescription = false;
+    } else {
+        $viewMode = 'list';
+        $imageDisplayArea = 'category_page_list';
+        $showDescription = true;
+    }
+    /**
+     * Position for actions regarding image size changing in vde if needed
+     */
+    $pos = $block->getPositioned();
+    ?>
+<div class="products wrapper <?= /* @noEscape */ $viewMode ?> products-<?= /* @noEscape */ $viewMode ?>">
+    <ol class="posts-wrapper">
+        <?php foreach ($_postsCollection as $_post): ?>
+            <a class="post-wrapper" href="<?php echo $this->getUrl($_post->getUrlKey()) ?>">
+                <h2 class="post-title"><?=$block->escapeHtml($_post->getTitle())?></h2>
+                <p class="post-content"><b>Content:</b> <br/><?=$block->escapeHtml($_post->getContent())?></p>
+                <p class="post-announce"><b>Announce:</b><br/><?=$block->escapeHtml($_post->getAnnounce())?></p>
+                <h4 class="post-date"><?=$block->escapeHtml(rtrim($_post->getPublishedDate(),"00:00:00"))?></h4>
+            </a>
+        <?php endforeach; ?>
+    </ol>
+</div>
+<style>
+    a:hover {
+        text-decoration: none;
+    }
+    .posts-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        color: #000;
+    }
+    .post-wrapper {
+        border: 1px solid #707070;
+        border-radius: 10px;
+        margin: 10px;
+        min-width: 200px;
+        background-color: #F0F0F0;
+        transition: all 1s ease;
+        padding: 5px 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    .post-wrapper:hover {
+        background-color: #BEBEBE;
+        cursor: pointer;
+    }
+    .post-title {
+        text-align: center;
+        font-weight: 700;
+    }
+    .post-content,
+    .post-announce,
+    .post-title{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .post-date {
+        margin-top: 20px;
+    }
+</style>
+<?php endif; ?>

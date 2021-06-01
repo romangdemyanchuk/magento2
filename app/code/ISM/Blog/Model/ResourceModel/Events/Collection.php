@@ -5,6 +5,11 @@ namespace ISM\Blog\Model\ResourceModel\Events;
 class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
 {
     protected $_idFieldName = 'entity_id';
+
+    public function addAttributeToSelect(array $array)
+    {
+    }
+
     /**
      * Define model & resource model
      */
@@ -15,4 +20,5 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
             'ISM\Blog\Model\ResourceModel\Events'
         );
     }
+
 }

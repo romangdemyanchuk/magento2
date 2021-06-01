@@ -101,6 +101,13 @@ class Main extends Generic implements TabInterface
             'text',
             ['name' => 'url_key', 'label' => __('Url'), 'title' => __('Url'), 'required' => true]
         );
+//        $fieldset->addField(
+//            'identifier',
+//            'text',
+//            ['name' => 'identifier', 'label' => __('URL Key'), 'title' => __('identifier'), 'required' => true]
+//        );
+
+
         $fieldset->addField(
             'published_date',
             'date',
@@ -113,16 +120,13 @@ class Main extends Generic implements TabInterface
             'select',
             [ 'label' => __('Published'), 'name'=> 'is_published',
             'values' => [
-                'Yes' => 'Yes',
-                'No'   => 'No'
+                ['label' => 'Yes', 'value' => 1],
+                ['label' => 'No', 'value' => 0],
             ]
         ]);
-
-
-
-
         $form->setValues($model->getData());
         $this->setForm($form);
         return parent::_prepareForm();
     }
+
 }
