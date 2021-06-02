@@ -1,9 +1,5 @@
 <?php
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
-namespace ISM\Blog\Model\Page;
+namespace ISM\Blog\Model\Events;
 
 use ISM\Blog\Model\ResourceModel\Events\CollectionFactory;
 use Magento\Framework\App\Request\DataPersistorInterface;
@@ -28,6 +24,10 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
      * @var array
      */
     protected $loadedData;
+    /**
+     * @var CollectionFactory
+     */
+    private $collectionFactory;
 
     /**
      * Constructor
@@ -35,7 +35,7 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
      * @param string $name
      * @param string $primaryFieldName
      * @param string $requestFieldName
-     * @param CollectionFactory $blockCollectionFactory
+     * @param CollectionFactory $pageCollectionFactory
      * @param DataPersistorInterface $dataPersistor
      * @param array $meta
      * @param array $data
@@ -45,13 +45,14 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
         $name,
         $primaryFieldName,
         $requestFieldName,
-        CollectionFactory $blockCollectionFactory,
+        CollectionFactory $pageCollectionFactory,
         DataPersistorInterface $dataPersistor,
         array $meta = [],
         array $data = [],
         PoolInterface $pool = null
     ) {
-        $this->collection = $blockCollectionFactory->create();
+        $this->collection = $pageCollectionFactory->create();
+        $this->collectionFactory = $pageCollectionFactory;
         $this->dataPersistor = $dataPersistor;
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data, $pool);
     }
@@ -66,20 +67,20 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
         if (isset($this->loadedData)) {
             return $this->loadedData;
         }
+        $this->collection = $this->collectionFactory->create();
         $items = $this->collection->getItems();
-        /** @var \ISM\Blog\Model\Events $block */
-        foreach ($items as $block) {
-            $this->loadedData[$block->getId()] = $block->getData();
+        /** @var $page \ISM\Blog\Model\Events */
+        foreach ($items as $page) {
+            $this->loadedData[$page->getId()] = $page->getData();
         }
 
         $data = $this->dataPersistor->get('event');
         if (!empty($data)) {
-            $block = $this->collection->getNewEmptyItem();
-            $block->setData($data);
-            $this->loadedData[$block->getId()] = $block->getData();
+            $page = $this->collection->getNewEmptyItem();
+            $page->setData($data);
+            $this->loadedData[$page->getId()] = $page->getData();
             $this->dataPersistor->clear('event');
         }
-
         return $this->loadedData;
     }
 }

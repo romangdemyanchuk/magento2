@@ -2,6 +2,8 @@
 
 namespace ISM\Blog\Controller\Adminhtml\Items;
 
+use Magento\Framework\App\Request\DataPersistorInterface;
+
 class Save extends \ISM\Blog\Controller\Adminhtml\Items
 {
     public function execute()
@@ -23,17 +25,6 @@ class Save extends \ISM\Blog\Controller\Adminhtml\Items
                         throw new \Magento\Framework\Exception\LocalizedException(__('The wrong item is specified.'));
                     }
                 }
-
-                $timezone = $this->_objectManager->create('Magento\Framework\Stdlib\DateTime\TimezoneInterface');
-                $fromTz = $timezone->getConfigTimezone();
-                $toTz = $timezone->getDefaultTimezone();
-                $date = new \DateTime('2000-01-01', new \DateTimeZone($fromTz));
-                $date->setTimezone(new \DateTimeZone($toTz));
-                $data['date'] = $date->format('m/d/Y H:i:s');
-
-                $timezone = $this->_objectManager->create('Magento\Framework\Stdlib\DateTime\DateTime');
-                $data['updated_at'] = $timezone->gmtDate();
-
                 $model->setData($data);
                 $session = $this->_objectManager->get('Magento\Backend\Model\Session');
                 $session->setPageData($model->getData());

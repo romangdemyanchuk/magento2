@@ -56,8 +56,10 @@ $_helper = $block->getData('outputHelper');
     </ol>
 </div>
 <style>
+
     a:hover {
         text-decoration: none;
+
     }
     .posts-wrapper {
         display: grid;
@@ -73,6 +75,8 @@ $_helper = $block->getData('outputHelper');
         transition: all 1s ease;
         padding: 5px 10px;
         box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        animation-name: post;
+        animation-duration: 1s;
     }
     .post-wrapper:hover {
         background-color: #BEBEBE;
@@ -91,6 +95,20 @@ $_helper = $block->getData('outputHelper');
     }
     .post-date {
         margin-top: 20px;
+    }
+
+    @keyframes post {
+        0% {
+            transform: translateX(-1000px);
+
+        }
+        50% {
+            transform: translateX(200px);
+
+        }
+        100% {
+            transform: translateX(0px);
+        }
     }
 </style>
 <?php endif; ?>
