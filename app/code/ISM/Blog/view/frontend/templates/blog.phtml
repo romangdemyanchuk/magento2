@@ -46,7 +46,7 @@ $_helper = $block->getData('outputHelper');
 <div class="products wrapper <?= /* @noEscape */ $viewMode ?> products-<?= /* @noEscape */ $viewMode ?>">
     <ol class="posts-wrapper">
         <?php foreach ($_postsCollection as $_post): ?>
-            <a class="post-wrapper" href="<?php echo $this->getUrl($_post->getUrlKey()) ?>">
+            <a class="post-wrapper" href="<?php echo $this->getUrl('blog/index/view/id/' . $_post->getEntityId()) ?>">
                 <h2 class="post-title"><?=$block->escapeHtml($_post->getTitle())?></h2>
                 <p class="post-content"><b>Content:</b> <br/><?=$block->escapeHtml($_post->getContent())?></p>
                 <p class="post-announce"><b>Announce:</b><br/><?=$block->escapeHtml($_post->getAnnounce())?></p>
@@ -70,7 +70,7 @@ $_helper = $block->getData('outputHelper');
         border: 1px solid #707070;
         border-radius: 10px;
         margin: 10px;
-        min-width: 200px;
+        width: 200px;
         background-color: #F0F0F0;
         transition: all 1s ease;
         padding: 5px 10px;

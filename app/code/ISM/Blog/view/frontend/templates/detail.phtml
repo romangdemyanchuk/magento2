@@ -1,0 +1,61 @@
+<?php
+/**
+ * Product list template
+ * @var \Magento\Framework\Escaper $escaper
+ * @var $block \ISM\Blog\Block\Page\Item */
+?>
+<?php
+    $_postInfo = $block->getPost();
+?>
+<?php
+if ($block->getMode() === 'grid') {
+    $viewMode = 'grid';
+    $imageDisplayArea = 'category_page_grid';
+    $showDescription = false;
+} else {
+    $viewMode = 'list';
+    $imageDisplayArea = 'category_page_list';
+    $showDescription = true;
+}
+?>
+
+<div <?= /* @noEscape */ $viewMode ?> products-<?= /* @noEscape */ $viewMode ?>">
+        <div class="post-content">
+            <h1 class="post-title"><?= $_postInfo->getData('title') ?></h1>
+            <p><b>Announce:</b><?= $_postInfo->getData('announce') ?></p>
+            <p><b>Content:</b><?= $_postInfo->getData('content') ?></p>
+            <time><?= rtrim($_postInfo->getData('published_date'), "00:00:00") ?></time>
+        </div>
+</div>
+</div>
+<style>
+    body {
+        font-family: 'Montserrat', sans-serif;
+        color: #606060;
+        font-size: 18px;
+    }
+    .post-content {
+        border: 3px solid silver;
+        padding: 30px 15px;
+        border-radius: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .post-title {
+        font-weight: 500;
+        margin-bottom: 15px;
+        font-size: 40px;
+        text-align: center;
+    }
+    p {
+        line-height: 1.5;
+        margin-bottom: 1em;
+        text-align: justify;
+    }
+
+</style>
+
+
+
+
