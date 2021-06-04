@@ -9,10 +9,6 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
     public function addAttributeToSelect(array $array)
     {
     }
-
-    /**
-     * Define model & resource model
-     */
     protected function _construct()
     {
         $this->_init(

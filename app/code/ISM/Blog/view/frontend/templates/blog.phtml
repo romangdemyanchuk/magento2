@@ -1,14 +1,8 @@
 <?php
-/**
-* Copyright © Magento, Inc. All rights reserved.
-* See COPYING.txt for license details.
-*/
 use Magento\Framework\App\Action\Action;
-
 ?>
 <?php
 /**
- * Product list template
  *
  * @var $block \ISM\Blog\Block\Items
  * @var \Magento\Framework\Escaper $escaper
@@ -38,15 +32,12 @@ $_helper = $block->getData('outputHelper');
         $imageDisplayArea = 'category_page_list';
         $showDescription = true;
     }
-    /**
-     * Position for actions regarding image size changing in vde if needed
-     */
     $pos = $block->getPositioned();
     ?>
 <div class="products wrapper <?= /* @noEscape */ $viewMode ?> products-<?= /* @noEscape */ $viewMode ?>">
-    <ol class="posts-wrapper">
+    <ol class="posts">
         <?php foreach ($_postsCollection as $_post): ?>
-            <a class="post-wrapper" href="<?php echo $this->getUrl('blog/index/view/id/' . $_post->getEntityId()) ?>">
+            <a class="post" href="<?php echo 'blog/index/view/id/' . $_post->getEntityId() ?>">
                 <h2 class="post-title"><?=$block->escapeHtml($_post->getTitle())?></h2>
                 <p class="post-content"><b>Content:</b> <br/><?=$block->escapeHtml($_post->getContent())?></p>
                 <p class="post-announce"><b>Announce:</b><br/><?=$block->escapeHtml($_post->getAnnounce())?></p>
@@ -55,60 +46,4 @@ $_helper = $block->getData('outputHelper');
         <?php endforeach; ?>
     </ol>
 </div>
-<style>
-
-    a:hover {
-        text-decoration: none;
-
-    }
-    .posts-wrapper {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        color: #000;
-    }
-    .post-wrapper {
-        border: 1px solid #707070;
-        border-radius: 10px;
-        margin: 10px;
-        width: 200px;
-        background-color: #F0F0F0;
-        transition: all 1s ease;
-        padding: 5px 10px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.5);
-        animation-name: post;
-        animation-duration: 1s;
-    }
-    .post-wrapper:hover {
-        background-color: #BEBEBE;
-        cursor: pointer;
-    }
-    .post-title {
-        text-align: center;
-        font-weight: 700;
-    }
-    .post-content,
-    .post-announce,
-    .post-title{
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    .post-date {
-        margin-top: 20px;
-    }
-
-    @keyframes post {
-        0% {
-            transform: translateX(-1000px);
-
-        }
-        50% {
-            transform: translateX(200px);
-
-        }
-        100% {
-            transform: translateX(0px);
-        }
-    }
-</style>
 <?php endif; ?>

@@ -7,7 +7,6 @@
         <column xsi:type="text" name="content"/>
         <column xsi:type="text" name="announce"/>
         <column xsi:type="timestamp" name="published_date"/>
-        <column xsi:type="text" name="url_key"/>
         <column xsi:type="boolean" name="is_published"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="entity_id"/>

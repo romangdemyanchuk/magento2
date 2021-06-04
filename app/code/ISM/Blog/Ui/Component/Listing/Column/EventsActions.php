@@ -12,6 +12,8 @@ namespace ISM\Blog\Ui\Component\Listing\Column;
 class EventsActions extends \Magento\Ui\Component\Listing\Columns\Column
 {
     const URL_PATH_EDIT = 'ism_blog/items/edit';
+    const URL_PATH_DELETE = 'ism_blog/items/delete';
+
 
     /**
      * URL builder
@@ -61,6 +63,19 @@ class EventsActions extends \Magento\Ui\Component\Listing\Columns\Column
                             ]
                         ),
                         'label' => __('Edit')
+                    ],
+                    'delete' => [
+                        'href' => $this->_urlBuilder->getUrl(
+                            static::URL_PATH_DELETE,
+                            [
+                                'id' => $item['entity_id']
+                            ]
+                        ),
+                        'label' => __('Delete'),
+                        'confirm' => [
+                            'title' => __('Delete item'),
+                            'message' => __('Are you sure you want to delete a  record?'),
+                        ],
                     ],
                 ];
             }

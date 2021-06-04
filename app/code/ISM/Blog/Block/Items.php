@@ -1,7 +1,6 @@
 <?php
 namespace ISM\Blog\Block;
 
-
 use ISM\Blog\Model\ResourceModel\Events\CollectionFactory;
 use Magento\Backend\Block\Template\Context;
 use Magento\Framework\View\Element\Template;

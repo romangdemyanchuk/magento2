@@ -8,22 +8,14 @@ class Save extends \ISM\Blog\Controller\Adminhtml\Items
 {
     public function execute()
     {
-        if ($this->getRequest()->getPostValue()) {
+        $data = $this->getRequest()->getPostValue();
+        if ($data) {
             try {
                 $model = $this->_objectManager->create('ISM\Blog\Model\Events');
                 $data = $this->getRequest()->getPostValue();
-                $inputFilter = new \Zend_Filter_Input(
-                    [],
-                    [],
-                    $data
-                );
-                $data = $inputFilter->getUnescaped();
-                $id = $this->getRequest()->getParam('id');
+                $id = $this->getRequest()->getParam('form_key');
                 if ($id) {
                     $model->load($id);
-                    if ($id != $model->getId()) {
-                        throw new \Magento\Framework\Exception\LocalizedException(__('The wrong item is specified.'));
-                    }
                 }
                 $model->setData($data);
                 $session = $this->_objectManager->get('Magento\Backend\Model\Session');
@@ -50,8 +42,6 @@ class Save extends \ISM\Blog\Controller\Adminhtml\Items
                 $this->messageManager->addError(
                     __('Something went wrong while saving the event data. Please review the error log.')
                 );
-                $this->_objectManager->get('Psr\Log\LoggerInterface')->critical($e);
-                $this->_objectManager->get('Magento\Backend\Model\Session')->setPageData($data);
                 $this->_redirect('ism_blog/*/edit', ['id' => $this->getRequest()->getParam('id')]);
                 return;
             }
