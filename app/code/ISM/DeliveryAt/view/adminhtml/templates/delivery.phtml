@@ -1,0 +1,25 @@
+<section class="admin__page-section order-addresses">
+    <div class="admin__page-section-title">
+        <span class="title"><?= $block->escapeHtml(__('Delivery Information')) ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item order-billing-address">
+            <?php /* Billing Address */ ?>
+            <div class="admin__page-section-item-title">
+                <span class="title"><?= $block->escapeHtml(__('Billing Address')) ?></span>
+                <div class="actions"><?= /* @noEscape */ $block->getAddressEditLink($order->getBillingAddress()); ?></div>
+            </div>
+            <address class="admin__page-section-item-content"><?= $block->escapeHtml($block->getFormattedAddress($order->getBillingAddress()), $allowedAddressHtmlTags); ?></address>
+        </div>
+        <?php if (!$block->getOrder()->getIsVirtual()) : ?>
+            <div class="admin__page-section-item order-shipping-address">
+                <?php /* Shipping Address */ ?>
+                <div class="admin__page-section-item-title">
+                    <span class="title"><?= $block->escapeHtml(__('Shipping Address')) ?></span>
+                    <div class="actions"><?= /* @noEscape */ $block->getAddressEditLink($order->getShippingAddress()); ?></div>
+                </div>
+                <address class="admin__page-section-item-content"><?= $block->escapeHtml($block->getFormattedAddress($order->getShippingAddress()), $allowedAddressHtmlTags); ?></address>
+            </div>
+        <?php endif; ?>
+    </div>
+</section>
