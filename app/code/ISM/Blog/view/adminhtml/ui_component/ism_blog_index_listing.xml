@@ -10,7 +10,7 @@
         <item name="buttons" xsi:type="array">
             <item name="add" xsi:type="array">
                 <item name="name" xsi:type="string">add</item>
-                <item name="label" xsi:type="string" translate="true">Create a post</item>
+                <item name="label" xsi:type="string" translate="true">Create a Post</item>
                 <item name="class" xsi:type="string">primary</item>
                 <item name="url" xsi:type="string">*/*/new</item>
             </item>
@@ -96,6 +96,19 @@
                 </item>
             </argument>
         </filters>
+        <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Delete selected items?</message>
+                        <title translate="true">Delete items</title>
+                    </confirm>
+                    <url path="ism_blog/items/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+        </massaction>
         <paging name="listing_paging">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -158,6 +171,7 @@
                     <item name="filter" xsi:type="string">text</item>
                     <item name="label" xsi:type="string" translate="true">Title</item>
                     <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
+                    <item name="sortOrder" xsi:type="number">3</item>
                 </item>
             </argument>
         </column>
@@ -167,6 +181,7 @@
                     <item name="filter" xsi:type="string">textarea</item>
                     <item name="label" xsi:type="string" translate="true">Announce</item>
                     <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
+                    <item name="sortOrder" xsi:type="number">4</item>
                 </item>
             </argument>
         </column>
@@ -193,16 +208,17 @@
                     <item name="editor" xsi:type="array">
                         <item name="editorType" xsi:type="string">select</item>
                     </item>
+                    <item name="sortOrder" xsi:type="number">5</item>
                 </item>
             </argument>
         </column>
         <actionsColumn name="actions" class="ISM\Blog\Ui\Component\Listing\Column\EventsActions">
-            <settings>
-                <indexField>page_id</indexField>
-                <resizeEnabled>false</resizeEnabled>
-                <resizeDefaultWidth>107</resizeDefaultWidth>
-            </settings>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">entity_id</item>
+                    <item name="sortOrder" xsi:type="number">6</item>
+                </item>
+            </argument>
         </actionsColumn>
-
     </columns>
 </listing>
