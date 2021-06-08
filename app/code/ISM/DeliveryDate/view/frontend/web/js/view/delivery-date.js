@@ -8,21 +8,21 @@ define([
     return Component.extend({
         initialize: function () {
             this._super();
-            let disabled = window.checkoutConfig.shipping.delivery_date.disabled;
-            let noday = window.checkoutConfig.shipping.delivery_date.noday;
-            let hourMin = parseInt(window.checkoutConfig.shipping.delivery_date.hourMin);
-            let hourMax = parseInt(window.checkoutConfig.shipping.delivery_date.hourMax);
-            let format = window.checkoutConfig.shipping.delivery_date.format;
+            var disabled = window.checkoutConfig.shipping.delivery_date.disabled;
+            var noday = window.checkoutConfig.shipping.delivery_date.noday;
+            var hourMin = parseInt(window.checkoutConfig.shipping.delivery_date.hourMin);
+            var hourMax = parseInt(window.checkoutConfig.shipping.delivery_date.hourMax);
+            var format = window.checkoutConfig.shipping.delivery_date.format;
             if(!format) {
                 format = 'yy-mm-dd';
             }
-            let disabledDay = disabled.split(",").map(function(item) {
+            var disabledDay = disabled.split(",").map(function(item) {
                 return parseInt(item, 10);
             });
 
             ko.bindingHandlers.datetimepicker = {
                 init: function (element, valueAccessor, allBindingsAccessor) {
-                    let $el = $(element);
+                    var $el = $(element);
                     //initialize datetimepicker
                     if(noday) {
                         var options = {
@@ -50,9 +50,9 @@ define([
 
                     $el.datetimepicker(options);
 
-                    let writable = valueAccessor();
+                    var writable = valueAccessor();
                     if (!ko.isObservable(writable)) {
-                        let propWriters = allBindingsAccessor()._ko_property_writers;
+                        var propWriters = allBindingsAccessor()._ko_property_writers;
                         if (propWriters && propWriters.datetimepicker) {
                             writable = propWriters.datetimepicker;
                         } else {
@@ -62,9 +62,10 @@ define([
                     writable($(element).datetimepicker("getDate"));
                 },
                 update: function (element, valueAccessor) {
-                    let widget = $(element).data("DateTimePicker");
+                    var widget = $(element).data("DateTimePicker");
+                    //when the view model is updated, update the widget
                     if (widget) {
-                        let date = ko.utils.unwrapObservable(valueAccessor());
+                        var date = ko.utils.unwrapObservable(valueAccessor());
                         widget.date(date);
                     }
                 }

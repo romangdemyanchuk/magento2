@@ -28,7 +28,7 @@ define(
 
         return {
             saveShippingInformation: function () {
-                let payload;
+                var payload;
 
                 if (!quote.billingAddress()) {
                     selectBillingAddressAction(quote.shippingAddress());

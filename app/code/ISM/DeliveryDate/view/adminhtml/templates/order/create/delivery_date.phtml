@@ -21,16 +21,16 @@
         'mage/calendar'
     ], function ($) {
         $(document).ready(function () {
-            let config = <?= $block->getConfig() ?>;
-            let disabled = config.shipping.delivery_date.disabled;
-            let noday = config.shipping.delivery_date.noday;
-            let hourMin = parseInt(config.shipping.delivery_date.hourMin);
-            let hourMax = parseInt(config.shipping.delivery_date.hourMax);
-            let format = config.shipping.delivery_date.format;
+            var config = <?= $block->getConfig() ?>;
+            var disabled = config.shipping.delivery_date.disabled;
+            var noday = config.shipping.delivery_date.noday;
+            var hourMin = parseInt(config.shipping.delivery_date.hourMin);
+            var hourMax = parseInt(config.shipping.delivery_date.hourMax);
+            var format = config.shipping.delivery_date.format;
             if(!format) {
                 format = 'yy-mm-dd';
             }
-            let disabledDay = disabled.split(",").map(function(item) {
+            var disabledDay = disabled.split(",").map(function(item) {
                 return parseInt(item, 10);
             });
 

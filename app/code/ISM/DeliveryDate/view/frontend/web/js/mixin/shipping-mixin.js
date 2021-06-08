@@ -3,6 +3,8 @@ define(
         'jquery',
         'ko'
     ], function (
+        $,
+        ko
     ) {
         'use strict';
 
@@ -17,9 +19,11 @@ define(
                     this.source.set('params.invalid', false);
                     this.source.trigger('delivery_date.data.validate');
 
-                    return !this.source.get('params.invalid');
+                    if (this.source.get('params.invalid')) {
+                        return false;
+                    }
 
-
+                    return true;
                 }
             });
         }

@@ -23,10 +23,12 @@ class ShippingInformationManagement
     }
 
     /**
+     * @param \Magento\Checkout\Model\ShippingInformationManagement $subject
      * @param $cartId
      * @param ShippingInformationInterface $addressInformation
      */
     public function beforeSaveAddressInformation(
+        \Magento\Checkout\Model\ShippingInformationManagement $subject,
         $cartId,
         ShippingInformationInterface $addressInformation
     ) {

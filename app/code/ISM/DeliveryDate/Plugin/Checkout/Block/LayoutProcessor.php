@@ -22,10 +22,12 @@ class LayoutProcessor
     }
 
     /**
+     * @param \Magento\Checkout\Block\Checkout\LayoutProcessor $subject
      * @param array $jsLayout
      * @return array
      */
     public function afterProcess(
+        \Magento\Checkout\Block\Checkout\LayoutProcessor $subject,
         array $jsLayout
     ) {
 
